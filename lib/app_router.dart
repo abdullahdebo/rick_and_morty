@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/business_logic/cubit/characters_cubit.dart';
 import 'package:movieapp/constants/strings.dart';
+import 'package:movieapp/data/models/characters.dart';
 import 'package:movieapp/data/repository/characters_repository.dart';
 import 'package:movieapp/data/web_services/characters_web_services.dart';
-import 'package:movieapp/presentation/widgets/screens/characters_details.dart';
+import 'package:movieapp/presentation/widgets/screens/characters_details_screen.dart';
 import 'package:movieapp/presentation/widgets/screens/characters_screen.dart';
 
 class AppRouter {
@@ -28,7 +29,11 @@ class AppRouter {
                 ));
 
       case characterDetailsScreen:
-        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen());
+        final character = settings.arguments as Character;
+        return MaterialPageRoute(
+            builder: (_) => CharacterDetailsScreen(
+                  character: character,
+                ));
     }
   }
 }

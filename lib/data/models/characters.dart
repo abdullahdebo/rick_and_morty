@@ -5,6 +5,7 @@ class Character {
   late List<dynamic> episode;
   late String statusIfDeadOrAlive;
   late String gender;
+  late String species;
 
   Character.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -13,5 +14,6 @@ class Character {
     episode = json['episode'];
     statusIfDeadOrAlive = json['status'];
     gender = json['gender'];
+    species = json['species'];
   }
 }
