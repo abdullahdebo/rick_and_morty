@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp/constants/my_colors.dart';
-import 'package:movieapp/data/models/characters.dart';
+import '../../../constants/my_colors.dart';
+import '../../../data/models/characters.dart';
 
 class CharacterDetailsScreen extends StatelessWidget {
   final Character character;
@@ -101,7 +101,7 @@ class CharacterDetailsScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 500,
+                  height: 620,
                 ),
               ],
             ),

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movieapp/constants/strings.dart';
+import '../../constants/strings.dart';
 
 class CharactersWebServices {
   late Dio dio;

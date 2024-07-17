@@ -1,6 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 import 'package:movieapp/business_logic/cubit/characters_cubit.dart';
 import 'package:movieapp/constants/my_colors.dart';
 import 'package:movieapp/data/models/characters.dart';
@@ -164,6 +167,30 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
 
+  Widget buildNoInternetWidgit() {
+    return Center(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'No Internet ..... Cheack Your internet',
+              style: TextStyle(
+                fontSize: 25,
+                color: MyColors.myGray,
+              ),
+            ),
+            Image.asset('assets/images/error.png'),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,7 +199,19 @@ class _CharactersScreenState extends State<CharactersScreen> {
         title: _isSearching ? _buildSearchField() : _buildAppBarTitle(),
         actions: _buildAppBarAction(),
       ),
-      body: buildBlocWidget(),
+
+      // body: buildBlocWidget(),
+      body: OfflineBuilder(
+        connectivityBuilder: (
+          BuildContext context,
+          List<ConnectivityResult> connectivity,
+          Widget child,
+        ) {
+          final bool connected = connectivity.contains(ConnectivityResult.none);
+          return connected ? buildBlocWidget() : buildNoInternetWidgit();
+        },
+        child: Container(),
+      ),
     );
   }
 }
